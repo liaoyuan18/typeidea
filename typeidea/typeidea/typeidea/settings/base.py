@@ -5,6 +5,9 @@ TIME_ZONE = 'Asia/Shanghai'
 
 
 INSTALLED_APPS = [
+    
+    # 'simpleui'
+    
     'blog',
     'config',
     'comment',
