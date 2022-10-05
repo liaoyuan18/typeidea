@@ -25,10 +25,11 @@ urlpatterns = [
     re_path(r'^super_admin/', admin.site.urls),
     path('admin/', custom_site.urls),
 
-    re_path(r'^$', post_list),
-    re_path(r'^category/(?P<category_id>\d+)/$', post_list),
-    path('tag/<tag_id>', post_list),
-    re_path(r'^links/&', links),
-    path('post/<post_id>.html', post_detail)
+    re_path(r'^$', post_list, name='index'),
+    re_path(r'^category/(?P<category_id>\d+)/$',
+            post_list, name='category-list'),
+    path('tag/<tag_id>', post_list, name='tag-list'),
+    re_path(r'^links/&', links, name='links'),
+    path('post/<post_id>.html', post_detail, name='post-detail')
 
 ]

@@ -17,7 +17,8 @@ class Link(models.Model):
         default=1, choices=STATUS_ITEMS, verbose_name="状态")
     weight = models.PositiveIntegerField(default=1, choices=zip(
         range(1, 6), range(1, 6)), verbose_name="权重", help_text="权重高展示在前")
-    owner = models.ForeignKey(User, verbose_name="作者", on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User, verbose_name="作者",
+                              on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
     class Meta:
@@ -42,8 +43,16 @@ class SideBar(models.Model):
         max_length=500, blank=True, verbose_name="内容", help_text="如果不是html,可以为空")
     status = models.PositiveIntegerField(
         default=STATUS_SHOW, choices=STATUS_ITEMS, verbose_name="状态")
-    owner = models.ForeignKey(User, verbose_name="作者", on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User, verbose_name="作者",
+                              on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
     class Meta:
         verbose_name = verbose_name_plural = "侧边栏"
+
+    def __str__(self) -> str:
+        return self.title
+
+    @classmethod
+    def get_all(cls):
+        return cls.objects.filter(status=cls.STATUS_SHOW)

@@ -1,4 +1,4 @@
-{% if post %}
+{% extends './base.html' %} {% block title %} {{post.title}} {% endblock title %} {% block main %} {% if post %}
 <h1>{{post.title}}</h1>
 <div>
     <span>分类：{{post.category.name}}</span>
@@ -8,4 +8,4 @@
 <div>
     {{post.content}}
 </div>
-{% endif %}
+{% endif %} {% endblock main %}
